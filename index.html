@@ -565,7 +565,7 @@ fbq('track', 'PageView');
 
     <script>
         // --- Analytics & Tracking Variables ---
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx-xw1FnOuHNQRckyJPzKC6IYVT_9opLr_c7conIEfGrcW9q9HkCitWzqf-iAacfUKJVQ/exec";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzQ_g40J8Afeu3BXpJZT1AST3KTln1ANtgu3eBaP2d_ctGZhxd8T6NA8ZkP-lQaNjvG/exec";
         const visitorId = 'vis-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
         let startTime = Date.now();
         let sectionTimes = {
@@ -578,6 +578,32 @@ fbq('track', 'PageView');
         let lastTimestamp = Date.now();
         let maxScroll = 0;
         let orderPlaced = false;
+        let hasSentAnalytics = false;
+
+        // User Data Globals
+        let userIp = "Unknown";
+        let userLocation = "Unknown";
+        let deviceType = "Desktop";
+
+        // --- Fetch User Info & Device ---
+        async function fetchUserData() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                userIp = data.ip || "Unknown";
+                userLocation = `${data.city || ""}, ${data.country_name || ""}`;
+            } catch (e) { console.error("IP Fetch Error", e); }
+
+            const ua = navigator.userAgent;
+            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+                deviceType = "Tablet";
+            } else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/i.test(ua)) {
+                deviceType = "Mobile";
+            } else {
+                deviceType = "Desktop";
+            }
+        }
+        fetchUserData();
 
         // --- IntersectionObserver for Section Tracking ---
         const observerOptions = { threshold: 0.5 };
@@ -611,13 +637,14 @@ fbq('track', 'PageView');
             if (scrollPercent > maxScroll) maxScroll = scrollPercent;
         });
 
-        // --- Beacon for Bounces ---
+        // --- Beacon for Bounces (with Flag Fix) ---
         function sendBounceAnalytics() {
-            if (orderPlaced) return;
+            if (orderPlaced || hasSentAnalytics) return;
+            hasSentAnalytics = true;
+            
             updateTimers();
             const totalTime = Math.round((Date.now() - startTime) / 1000);
             
-            // Find most viewed box
             let mostViewedId = Object.keys(sectionTimes).reduce((a, b) => sectionTimes[a] > sectionTimes[b] ? a : b);
             let mostViewedName = document.getElementById(mostViewedId)?.getAttribute('data-section-name') || "None";
 
@@ -630,7 +657,10 @@ fbq('track', 'PageView');
                 section3Time: sectionTimes['product-section-3'],
                 section4Time: sectionTimes['product-section-4'],
                 mostViewedBox: mostViewedName,
-                scrollDepth: maxScroll + "%"
+                scrollDepth: maxScroll + "%",
+                userIp: userIp,
+                location: userLocation,
+                deviceType: deviceType
             });
             
             navigator.sendBeacon(GOOGLE_SCRIPT_URL, payload);
@@ -842,7 +872,10 @@ fbq('track', 'PageView');
                 mostViewedBox: mostViewedName,
                 isMatch: isMatch,
                 timeSpentOnSite: totalTime + "s",
-                visitorId: visitorId
+                visitorId: visitorId,
+                userIp: userIp,
+                location: userLocation,
+                deviceType: deviceType
             };
 
             try {
