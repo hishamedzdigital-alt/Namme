@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam Shop | بوكسات مهر مخصصة بأعلى جودة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- PhotoSwipe CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#C5A028',
+                            light: '#E8D48B',
+                            dark: '#A6841A',
+                            pale: '#F9F1D8',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Amiri', 'serif'],
+                        body: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Amiri', serif;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #C5A028 0%, #F9F1D8 50%, #C5A028 100%);
+        }
+        .gold-border {
+            border: 2px solid #C5A028;
+        }
+        .gold-border-thin {
+            border: 1px solid #C5A028;
+        }
+        .gold-shadow {
+            box-shadow: 0 4px 25px rgba(197, 160, 40, 0.12);
+        }
+        .gold-shadow-lg {
+            box-shadow: 0 10px 50px rgba(197, 160, 40, 0.15);
+        }
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 50%);
+        }
+        .ornament::before {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            margin: 0 auto 12px;
+        }
+        .ornament::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            margin: 12px auto 0;
+        }
+        .divider-gold {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, #F5E6B8, #D4AF37, transparent);
+        }
+        .input-gold:focus {
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+        .modal-overlay {
+            backdrop-filter: blur(8px);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #C5A028 0%, #E8D48B 50%, #C5A028 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #A6841A 0%, #C5A028 50%, #A6841A 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(197, 160, 40, 0.4);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* WhatsApp pulse */
+        .whatsapp-btn {
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+        }
+
+        /* Product Choice Cards */
+        .choice-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .choice-card:hover {
+            border-color: #E8D48B;
+            background-color: #FFFBF0;
+        }
+        .choice-card.active {
+            border-color: #C5A028;
+            background-color: #FFFBF0;
+            box-shadow: 0 4px 20px rgba(197, 160, 40, 0.15);
+        }
+        .choice-card.active .radio-circle {
+            border-color: #C5A028;
+            background-color: #C5A028;
+        }
+        .choice-card.active .radio-circle::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            display: block;
+        }
+        .radio-circle {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #D1D5DB;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        @media (min-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid #E5E7EB;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2199912713886740');
+fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=2199912713886740&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+    <!-- ===== HEADER / NAV ===== -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm gold-shadow">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center border border-gold/20 shadow-sm">
+                    <img src="https://i.ibb.co/B9scRzQ/IMG-20260718-152256-081.jpg" alt="Adam Shop Logo" class="w-full h-full object-cover">
+                </div>
+                <span class="text-xl font-bold font-heading text-gold">Adam Shop</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-700">
+                <a href="#gallery" class="hover:text-gold transition-colors">المعرض</a>
+                <a href="#order" class="hover:text-gold transition-colors">اطلب الآن</a>
+            </nav>
+            <a href="#order" class="md:hidden bg-gold text-white px-4 py-1.5 rounded-full text-sm font-semibold">
+                اطلب الآن
+            </a>
+        </div>
+        <div class="divider-gold"></div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero" class="hero-pattern relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 py-12 md:py-20 text-center">
+            <div class="animate-fadeInUp">
+                <div class="inline-block mb-4">
+                    <span class="text-xs font-semibold tracking-wider text-gold uppercase bg-gold/10 px-4 py-1.5 rounded-full">
+                        <i class="fas fa-star mr-1"></i> جودة لا مثيل لها
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold font-heading text-gray-900 leading-tight mb-6 tracking-tight">
+                    أناقة التقديم وفخامة التفاصيل.. مع بوكسات المهر الفاخرة
+                </h1>
+                <p class="text-lg text-gray-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+                    جودة عالية، تخصيص كامل للأسماء، وتوصيل سريع لجميع الولايات.
+                    <br>
+                    <span class="text-gold font-semibold">صُنعت بحب لتكون ذكرى لا تُنسى</span>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#order" class="btn-primary text-white px-10 py-4 rounded-xl font-bold text-lg inline-flex items-center justify-center gap-2 shadow-lg">
+                        <i class="fas fa-shopping-bag"></i>
+                        إنشـــــاء طلـــــب
+                    </a>
+                    <a href="https://wa.me/213550592467" target="_blank" class="bg-[#25D366] text-white px-10 py-4 rounded-xl font-bold text-lg inline-flex items-center justify-center gap-2 hover:bg-[#1DA851] transition-all whatsapp-btn shadow-lg">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        تواصل معنا
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY SECTIONS ===== -->
+    <section id="gallery" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12 scroll-reveal">
+                <div class="ornament"></div>
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-gray-900 mb-3">معرض منتجاتنا</h2>
+                <p class="text-gray-500 text-lg">تصفح تشكيلتنا المميزة من بوكسات المهر</p>
+            </div>
+
+            <!-- Section 1 -->
+            <div id="product-section-1" class="mb-16 scroll-reveal product-section" data-section-name="بوكس المهر من الفوركس مع علبة الخاتم">
+                <h3 class="text-2xl font-bold font-heading text-gray-800 mb-6 border-r-4 border-gold pr-4">بوكس المهر من الفوركس مع علبة الخاتم</h3>
+                <div class="gallery-grid" id="gallery-1">
+                    <a href="https://i.ibb.co/35VhMLcj/458666402-1785541418323400.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/35VhMLcj/458666402-1785541418323400.jpg" alt="بوكس المهر فوركس مع علبة خاتم 1">
+                    </a>
+                    <a href="https://i.ibb.co/S4VSw63r/355126054-1785538760943222.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/S4VSw63r/355126054-1785538760943222.jpg" alt="بوكس المهر فوركس مع علبة خاتم 2">
+                    </a>
+                    <a href="https://i.ibb.co/JFBk8HJh/743511342-1785538687393482.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/JFBk8HJh/743511342-1785538687393482.jpg" alt="بوكس المهر فوركس مع علبة خاتم 3">
+                    </a>
+                    <a href="https://i.ibb.co/sp5dkJKw/156678517-1785539332669140.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/sp5dkJKw/156678517-1785539332669140.jpg" alt="بوكس المهر فوركس مع علبة خاتم 4">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div id="product-section-2" class="mb-16 scroll-reveal product-section" data-section-name="بوكس المهر من الفوركس بدون علبة الخاتم">
+                <h3 class="text-2xl font-bold font-heading text-gray-800 mb-6 border-r-4 border-gold pr-4">بوكس المهر من الفوركس بدون علبة الخاتم</h3>
+                <div class="gallery-grid" id="gallery-2">
+                    <a href="https://i.ibb.co/4nncrVrC/FB-IMG-1785541979320.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/4nncrVrC/FB-IMG-1785541979320.jpg" alt="بوكس المهر فوركس بدون علبة خاتم 1">
+                    </a>
+                    <a href="https://i.ibb.co/fdw5xZ7y/FB-IMG-1785541976792.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/fdw5xZ7y/FB-IMG-1785541976792.jpg" alt="بوكس المهر فوركس بدون علبة خاتم 2">
+                    </a>
+                    <a href="https://i.ibb.co/XxTf7LzJ/727860937-1785542497072968.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/XxTf7LzJ/727860937-1785542497072968.jpg" alt="بوكس المهر فوركس بدون علبة خاتم 3">
+                    </a>
+                    <a href="https://i.ibb.co/6RWxpSP1/140385362-1785542479828556.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/6RWxpSP1/140385362-1785542479828556.jpg" alt="بوكس المهر فوركس بدون علبة خاتم 4">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div id="product-section-3" class="mb-16 scroll-reveal product-section" data-section-name="بوكس المهر من الأكريليك مع علبة الخاتم">
+                <h3 class="text-2xl font-bold font-heading text-gray-800 mb-6 border-r-4 border-gold pr-4">بوكس المهر من الأكريليك مع علبة الخاتم</h3>
+                <div class="gallery-grid" id="gallery-3">
+                    <a href="https://i.ibb.co/zVbGcKT3/629225440-1785538832462953.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/zVbGcKT3/629225440-1785538832462953.jpg" alt="بوكس المهر أكريليك مع علبة خاتم 1">
+                    </a>
+                    <a href="https://i.ibb.co/xKxTXCCq/399854378-1785538905756857.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/xKxTXCCq/399854378-1785538905756857.jpg" alt="بوكس المهر أكريليك مع علبة خاتم 2">
+                    </a>
+                    <a href="https://i.ibb.co/m5Q9PHF0/755920723-1785539113060974.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/m5Q9PHF0/755920723-1785539113060974.jpg" alt="بوكس المهر أكريليك مع علبة خاتم 3">
+                    </a>
+                    <a href="https://i.ibb.co/svfLM54v/839999214-1785539119482239.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/svfLM54v/839999214-1785539119482239.jpg" alt="بوكس المهر أكريليك مع علبة خاتم 4">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div id="product-section-4" class="mb-8 scroll-reveal product-section" data-section-name="بوكس المهر من الأكريليك بدون علبة الخاتم">
+                <h3 class="text-2xl font-bold font-heading text-gray-800 mb-6 border-r-4 border-gold pr-4">بوكس المهر من الأكريليك بدون علبة الخاتم</h3>
+                <div class="gallery-grid" id="gallery-4">
+                    <a href="https://i.ibb.co/4Q2xp4b/522640484-1785542799696722.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/4Q2xp4b/522640484-1785542799696722.jpg" alt="بوكس المهر أكريليك بدون علبة خاتم 1">
+                    </a>
+                    <a href="https://i.ibb.co/kgnv8F3P/316543502-1785542794410618.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/kgnv8F3P/316543502-1785542794410618.jpg" alt="بوكس المهر أكريليك بدون علبة خاتم 2">
+                    </a>
+                    <a href="https://i.ibb.co/27xm4HqH/134307343-1785542803730708.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/27xm4HqH/134307343-1785542803730708.jpg" alt="بوكس المهر أكريليك بدون علبة خاتم 3">
+                    </a>
+                    <a href="https://i.ibb.co/Pz6hF1ps/457890934-1785542807484438.jpg" class="gallery-item" data-pswp-width="1000" data-pswp-height="1000">
+                        <img src="https://i.ibb.co/Pz6hF1ps/457890934-1785542807484438.jpg" alt="بوكس المهر أكريليك بدون علبة خاتم 4">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ORDER FORM SECTION ===== -->
+    <section id="order" class="py-16 bg-gray-50">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-center mb-10 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-gray-900 mb-3">نموذج الطلب</h2>
+                <p class="text-gray-500">يرجى اختيار المنتج وإدخال معلوماتك لتأكيد الطلب</p>
+            </div>
+
+            <form id="orderForm" onsubmit="handleSubmit(event)" class="bg-white rounded-3xl p-6 md:p-10 gold-shadow-lg scroll-reveal">
+                
+                <!-- Product Selection UI -->
+                <div class="mb-10">
+                    <label class="block text-sm font-bold text-gray-700 mb-4">اختر الباقة المناسبة:</label>
+                    <div class="grid grid-cols-1 gap-4">
+                        <!-- Option 1 -->
+                        <div class="choice-card p-4 rounded-2xl border-2 flex items-center gap-4" onclick="selectProduct(this, 'بوكس المهر من الفوركس مع علبة الخاتم', 5900, 'https://i.ibb.co/sp5dkJKw/156678517-1785539332669140.jpg')">
+                            <div class="radio-circle"></div>
+                            <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
+                                <img src="https://i.ibb.co/sp5dkJKw/156678517-1785539332669140.jpg" alt="thumbnail" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-gray-900 text-sm md:text-base">بوكس المهر من الفوركس مع علبة الخاتم</h4>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <span class="text-gold font-bold">5,900 د.ج</span>
+                                    <span class="text-gray-400 text-xs line-through">8,300 د.ج</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Option 2 -->
+                        <div class="choice-card p-4 rounded-2xl border-2 flex items-center gap-4" onclick="selectProduct(this, 'بوكس المهر من الفوركس بدون علبة الخاتم', 4900, 'https://i.ibb.co/4nncrVrC/FB-IMG-1785541979320.jpg')">
+                            <div class="radio-circle"></div>
+                            <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
+                                <img src="https://i.ibb.co/4nncrVrC/FB-IMG-1785541979320.jpg" alt="thumbnail" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-gray-900 text-sm md:text-base">بوكس المهر من الفوركس بدون علبة الخاتم</h4>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <span class="text-gold font-bold">4,900 د.ج</span>
+                                    <span class="text-gray-400 text-xs line-through">6,800 د.ج</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Option 3 -->
+                        <div class="choice-card p-4 rounded-2xl border-2 flex items-center gap-4" onclick="selectProduct(this, 'بوكس المهر من الأكريليك مع علبة الخاتم', 5900, 'https://i.ibb.co/zVbGcKT3/629225440-1785538832462953.jpg')">
+                            <div class="radio-circle"></div>
+                            <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
+                                <img src="https://i.ibb.co/zVbGcKT3/629225440-1785538832462953.jpg" alt="thumbnail" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-gray-900 text-sm md:text-base">بوكس المهر من الأكريليك مع علبة الخاتم</h4>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <span class="text-gold font-bold">5,900 د.ج</span>
+                                    <span class="text-gray-400 text-xs line-through">8,300 د.ج</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Option 4 -->
+                        <div class="choice-card p-4 rounded-2xl border-2 flex items-center gap-4" onclick="selectProduct(this, 'بوكس المهر من الأكريليك بدون علبة الخاتم', 4900, 'https://i.ibb.co/4Q2xp4b/522640484-1785542799696722.jpg')">
+                            <div class="radio-circle"></div>
+                            <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
+                                <img src="https://i.ibb.co/4Q2xp4b/522640484-1785542799696722.jpg" alt="thumbnail" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-gray-900 text-sm md:text-base">بوكس المهر من الأكريليك بدون علبة الخاتم</h4>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <span class="text-gold font-bold">4,900 د.ج</span>
+                                    <span class="text-gray-400 text-xs line-through">6,800 د.ج</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <!-- Full Name -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-bold text-gray-700 mb-2">الاسم الكامل</label>
+                        <input type="text" id="fullName" required placeholder="أدخل اسمك الكامل" 
+                            class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none input-gold bg-gray-50">
+                    </div>
+
+                    <!-- Phone -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">رقم الهاتف</label>
+                        <input type="tel" id="phone" required placeholder="05 / 06 / 07" 
+                            class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none input-gold bg-gray-50">
+                    </div>
+
+                    <!-- Engraving Details -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">الأسماء المراد كتابتها</label>
+                        <input type="text" id="engraving" required placeholder="مثال: محمد & خديجة" 
+                            class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none input-gold bg-gray-50">
+                    </div>
+
+                    <!-- Mahr Date (Optional) -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-bold text-gray-700 mb-2">تاريخ المهر (اختياري)</label>
+                        <input type="text" id="mahrDate" placeholder="مثال: 20 جويلية 2026 أو اختر التاريخ" 
+                            class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none input-gold bg-gray-50">
+                    </div>
+
+                    <!-- Wilaya -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">الولاية</label>
+                        <select id="wilaya" required onchange="handleWilayaChange()"
+                            class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none input-gold bg-gray-50 appearance-none">
+                            <option value="">اختر الولاية</option>
+                        </select>
+                    </div>
+
+                    <!-- Commune -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">البلدية</label>
+                        <input type="text" id="commune" required placeholder="أدخل اسم البلدية" 
+                            class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none input-gold bg-gray-50">
+                    </div>
+                </div>
+
+                <!-- Delivery Type -->
+                <div class="mb-8">
+                    <label class="block text-sm font-bold text-gray-700 mb-4">طريقة التوصيل</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label class="relative flex items-center p-4 border rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
+                            <input type="radio" name="deliveryType" value="home" onchange="handleDeliveryChange()" class="w-4 h-4 text-gold focus:ring-gold">
+                            <div class="mr-3">
+                                <span class="block font-bold text-gray-900">توصيل للمنزل</span>
+                                <span id="homePriceLabel" class="text-gold font-bold"></span>
+                                <span id="homeWarning" class="text-red-500 text-xs hidden">غير متوفر لهذه الولاية</span>
+                            </div>
+                        </label>
+                        <label class="relative flex items-center p-4 border rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
+                            <input type="radio" name="deliveryType" value="stopdesk" onchange="handleDeliveryChange()" class="w-4 h-4 text-gold focus:ring-gold">
+                            <div class="mr-3">
+                                <span class="block font-bold text-gray-900">توصيل للمكتب (ZR Express)</span>
+                                <span id="stopdeskPriceLabel" class="text-gold font-bold"></span>
+                                <span id="stopdeskWarning" class="text-red-500 text-xs hidden">غير متوفر لهذه الولاية</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price Summary -->
+                <div id="calculator" class="hidden mb-8 p-6 rounded-2xl bg-gold/5 border border-gold/20">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-600">سعر البوكس:</span>
+                        <span class="font-bold"><span id="productPrice">0</span> د.ج</span>
+                    </div>
+                    <div class="flex justify-between mb-4 pb-4 border-b border-gold/10">
+                        <span class="text-gray-600">سعر التوصيل:</span>
+                        <span class="font-bold"><span id="deliveryPrice">0</span> د.ج</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-bold text-gray-900">الإجمالي المستحق:</span>
+                        <span class="text-2xl font-black text-gold"><span id="totalPrice">0</span> د.ج</span>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full btn-primary text-white px-8 py-4 rounded-2xl font-bold text-xl shadow-lg flex items-center justify-center gap-3">
+                    <i class="fas fa-check-circle"></i>
+                    تأكيـــــد الطلـــــب الآن
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center border border-gold/20">
+                    <img src="https://i.ibb.co/B9scRzQ/IMG-20260718-152256-081.jpg" alt="Adam Shop Logo" class="w-full h-full object-cover">
+                </div>
+                <span class="text-lg font-bold font-heading text-gold">Adam Shop</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-4">صُنعت بحب لتكون ذكرى لا تُنسى</p>
+            <div class="flex justify-center gap-4 mb-6">
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gold transition-colors text-gray-400 hover:text-white">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gold transition-colors text-gray-400 hover:text-white">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://wa.me/213550592467" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#25D366] transition-colors text-gray-400 hover:text-white">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <div class="divider-gold max-w-xs mx-auto mb-4"></div>
+            <p class="text-gray-500 text-xs">&copy; 2026 Adam Shop - جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <!-- ===== SUCCESS MODAL ===== -->
+    <div id="successModal" class="fixed inset-0 z-[100] hidden modal-overlay bg-black/50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full gold-shadow-lg animate-fadeInUp">
+            <div class="text-center">
+                <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+                    <i class="fas fa-check-circle text-green-500 text-4xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-heading text-gray-900 mb-6">تم إنشاء طلبك بنجاح</h3>
+                <button onclick="window.location.reload();" class="w-full btn-primary text-white px-8 py-3.5 rounded-xl font-bold text-lg inline-flex items-center justify-center gap-2">
+                    موافق
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script type="module">
+        import PhotoSwipeLightbox from 'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe-lightbox.esm.min.js';
+        
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: '#gallery-1, #gallery-2, #gallery-3, #gallery-4',
+            children: 'a',
+            pswpModule: () => import('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.esm.min.js')
+        });
+        lightbox.init();
+    </script>
+
+    <script>
+        // --- Analytics & Tracking Variables ---
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx-xw1FnOuHNQRckyJPzKC6IYVT_9opLr_c7conIEfGrcW9q9HkCitWzqf-iAacfUKJVQ/exec";
+        const visitorId = 'vis-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+        let startTime = Date.now();
+        let sectionTimes = {
+            'product-section-1': 0,
+            'product-section-2': 0,
+            'product-section-3': 0,
+            'product-section-4': 0
+        };
+        let activeSection = null;
+        let lastTimestamp = Date.now();
+        let maxScroll = 0;
+        let orderPlaced = false;
+
+        // --- IntersectionObserver for Section Tracking ---
+        const observerOptions = { threshold: 0.5 };
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    updateTimers();
+                    activeSection = entry.target.id;
+                } else if (activeSection === entry.target.id) {
+                    updateTimers();
+                    activeSection = null;
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-section').forEach(section => sectionObserver.observe(section));
+
+        function updateTimers() {
+            const now = Date.now();
+            if (activeSection && sectionTimes.hasOwnProperty(activeSection)) {
+                sectionTimes[activeSection] += Math.round((now - lastTimestamp) / 1000);
+            }
+            lastTimestamp = now;
+        }
+
+        // --- Scroll Depth Tracking ---
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = Math.round((scrollTop / scrollHeight) * 100);
+            if (scrollPercent > maxScroll) maxScroll = scrollPercent;
+        });
+
+        // --- Beacon for Bounces ---
+        function sendBounceAnalytics() {
+            if (orderPlaced) return;
+            updateTimers();
+            const totalTime = Math.round((Date.now() - startTime) / 1000);
+            
+            // Find most viewed box
+            let mostViewedId = Object.keys(sectionTimes).reduce((a, b) => sectionTimes[a] > sectionTimes[b] ? a : b);
+            let mostViewedName = document.getElementById(mostViewedId)?.getAttribute('data-section-name') || "None";
+
+            const payload = JSON.stringify({
+                type: "analytics_bounce",
+                visitorId: visitorId,
+                totalTimeSpent: totalTime,
+                section1Time: sectionTimes['product-section-1'],
+                section2Time: sectionTimes['product-section-2'],
+                section3Time: sectionTimes['product-section-3'],
+                section4Time: sectionTimes['product-section-4'],
+                mostViewedBox: mostViewedName,
+                scrollDepth: maxScroll + "%"
+            });
+            
+            navigator.sendBeacon(GOOGLE_SCRIPT_URL, payload);
+        }
+
+        window.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') sendBounceAnalytics();
+        });
+        window.addEventListener('beforeunload', sendBounceAnalytics);
+
+        // --- Product Selection & UI Logic ---
+        const wilayasData = [
+            {"id":1,"name":"أدرار","home":1400,"homeAvailable":true,"stopdesk":870,"stopdeskAvailable":true},
+            {"id":2,"name":"الشلف","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":3,"name":"الأغواط","home":500,"homeAvailable":true,"stopdesk":370,"stopdeskAvailable":true},
+            {"id":4,"name":"أم البواقي","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":5,"name":"باتنة","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":6,"name":"بجاية","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":7,"name":"بسكرة","home":950,"homeAvailable":true,"stopdesk":620,"stopdeskAvailable":true},
+            {"id":8,"name":"بشار","home":1100,"homeAvailable":true,"stopdesk":720,"stopdeskAvailable":true},
+            {"id":9,"name":"البليدة","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":10,"name":"البويرة","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":11,"name":"تمنراست","home":1700,"homeAvailable":true,"stopdesk":1170,"stopdeskAvailable":true},
+            {"id":12,"name":"تبسة","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":13,"name":"تلمسان","home":900,"homeAvailable":true,"stopdesk":570,"stopdeskAvailable":true},
+            {"id":14,"name":"تيارت","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":15,"name":"تيزي وزو","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":16,"name":"الجزائر","home":650,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":17,"name":"الجلفة","home":750,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":18,"name":"جيجل","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":19,"name":"سطيف","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":20,"name":"سعيدة","home":900,"homeAvailable":true,"stopdesk":570,"stopdeskAvailable":true},
+            {"id":21,"name":"سكيكدة","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":22,"name":"سيدي بلعباس","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":23,"name":"عنابة","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":24,"name":"قالمة","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":25,"name":"قسنطينة","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":26,"name":"المدية","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":27,"name":"مستغانم","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":28,"name":"المسيلة","home":850,"homeAvailable":true,"stopdesk":570,"stopdeskAvailable":true},
+            {"id":29,"name":"معسكر","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":30,"name":"ورقلة","home":950,"homeAvailable":true,"stopdesk":670,"stopdeskAvailable":true},
+            {"id":31,"name":"وهران","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":32,"name":"البيض","home":1100,"homeAvailable":true,"stopdesk":670,"stopdeskAvailable":true},
+            {"id":33,"name":"إيليزي","home":"غير متوفر","homeAvailable":false,"stopdesk":"غير متوفر","stopdeskAvailable":false},
+            {"id":34,"name":"برج بوعريريج","home":800,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":35,"name":"بومرداس","home":800,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":36,"name":"الطارف","home":850,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":37,"name":"تندوف","home":"غير متوفر","homeAvailable":false,"stopdesk":"غير متوفر","stopdeskAvailable":false},
+            {"id":38,"name":"تيسمسيلت","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":39,"name":"الوادي","home":950,"homeAvailable":true,"stopdesk":670,"stopdeskAvailable":true},
+            {"id":40,"name":"خنشلة","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":41,"name":"سوق أهراس","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":42,"name":"تيبازة","home":800,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":43,"name":"ميلة","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":44,"name":"عين الدفلى","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":45,"name":"النعامة","home":1100,"homeAvailable":true,"stopdesk":670,"stopdeskAvailable":true},
+            {"id":46,"name":"عين تموشنت","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":47,"name":"غرداية","home":850,"homeAvailable":true,"stopdesk":570,"stopdeskAvailable":true},
+            {"id":48,"name":"غليزان","home":900,"homeAvailable":true,"stopdesk":520,"stopdeskAvailable":true},
+            {"id":49,"name":"تيميمون","home":1400,"homeAvailable":true,"stopdesk":870,"stopdeskAvailable":true},
+            {"id":50,"name":"برج باجي مختار","home":"غير متوفر","homeAvailable":false,"stopdesk":"غير متوفر","stopdeskAvailable":false},
+            {"id":51,"name":"أولاد جلال","home":950,"homeAvailable":true,"stopdesk":620,"stopdeskAvailable":true},
+            {"id":52,"name":"بني عباس","home":1000,"homeAvailable":true,"stopdesk":870,"stopdeskAvailable":true},
+            {"id":53,"name":"عين صالح","home":1700,"homeAvailable":true,"stopdesk":"غير متوفر","stopdeskAvailable":false},
+            {"id":54,"name":"عين قزام","home":1700,"homeAvailable":true,"stopdesk":"غير متوفر","stopdeskAvailable":false},
+            {"id":55,"name":"تقرت","home":950,"homeAvailable":true,"stopdesk":670,"stopdeskAvailable":true},
+            {"id":56,"name":"جانت","home":"غير متوفر","homeAvailable":false,"stopdesk":"غير متوفر","stopdeskAvailable":false},
+            {"id":57,"name":"المغير","home":950,"homeAvailable":true,"stopdesk":"غير متوفر","stopdeskAvailable":false},
+            {"id":58,"name":"المنيعة","home":1000,"homeAvailable":true,"stopdesk":"غير متوفر","stopdeskAvailable":false}
+        ];
+
+        function populateWilayaDropdown() {
+            const select = document.getElementById('wilaya');
+            wilayasData.forEach(w => {
+                const option = document.createElement('option');
+                option.value = w.id;
+                option.textContent = `${w.id} - ${w.name}`;
+                select.appendChild(option);
+            });
+        }
+        populateWilayaDropdown();
+
+        let selectedProduct = null;
+        let selectedWilaya = null;
+        let selectedDelivery = null;
+
+        function selectProduct(element, name, price, thumb) {
+            document.querySelectorAll('.choice-card').forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
+            selectedProduct = {
+                name: name,
+                price: price,
+                thumbnail: thumb
+            };
+            updateCalculator();
+        }
+
+        function handleWilayaChange() {
+            const wilayaId = parseInt(document.getElementById('wilaya').value);
+            selectedWilaya = wilayasData.find(w => w.id === wilayaId);
+            selectedDelivery = null;
+            document.querySelectorAll('input[name="deliveryType"]').forEach(r => r.checked = false);
+
+            if (selectedWilaya) {
+                if (selectedWilaya.homeAvailable) {
+                    document.getElementById('homePriceLabel').textContent = selectedWilaya.home + ' د.ج';
+                    document.getElementById('homeWarning').classList.add('hidden');
+                } else {
+                    document.getElementById('homePriceLabel').textContent = '';
+                    document.getElementById('homeWarning').classList.remove('hidden');
+                }
+
+                if (selectedWilaya.stopdeskAvailable) {
+                    document.getElementById('stopdeskPriceLabel').textContent = selectedWilaya.stopdesk + ' د.ج';
+                    document.getElementById('stopdeskWarning').classList.add('hidden');
+                } else {
+                    document.getElementById('stopdeskPriceLabel').textContent = '';
+                    document.getElementById('stopdeskWarning').classList.remove('hidden');
+                }
+
+                const homeRadio = document.querySelector('input[name="deliveryType"][value="home"]');
+                const stopdeskRadio = document.querySelector('input[name="deliveryType"][value="stopdesk"]');
+                homeRadio.disabled = !selectedWilaya.homeAvailable;
+                stopdeskRadio.disabled = !selectedWilaya.stopdeskAvailable;
+            } else {
+                document.getElementById('homePriceLabel').textContent = '';
+                document.getElementById('stopdeskPriceLabel').textContent = '';
+                document.getElementById('homeWarning').classList.add('hidden');
+                document.getElementById('stopdeskWarning').classList.add('hidden');
+            }
+            updateCalculator();
+        }
+
+        function handleDeliveryChange() {
+            const checked = document.querySelector('input[name="deliveryType"]:checked');
+            selectedDelivery = checked ? checked.value : null;
+            updateCalculator();
+        }
+
+        function updateCalculator() {
+            const calculator = document.getElementById('calculator');
+            if (!selectedProduct || !selectedWilaya || !selectedDelivery) {
+                calculator.classList.add('hidden');
+                return;
+            }
+            calculator.classList.remove('hidden');
+            const productPrice = selectedProduct.price;
+            let deliveryPrice = (selectedDelivery === 'home') ? selectedWilaya.home : selectedWilaya.stopdesk;
+            const total = productPrice + deliveryPrice;
+            document.getElementById('productPrice').textContent = productPrice.toLocaleString('ar-DZ');
+            document.getElementById('deliveryPrice').textContent = deliveryPrice.toLocaleString('ar-DZ');
+            document.getElementById('totalPrice').textContent = total.toLocaleString('ar-DZ');
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+            if (!selectedProduct) {
+                alert('يرجى اختيار الباقة المفضلة لديك أولاً للمتابعة');
+                return;
+            }
+            const fullName = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const engraving = document.getElementById('engraving').value.trim();
+            const mahrDateValue = document.getElementById('mahrDate').value.trim();
+            const wilaya = document.getElementById('wilaya').value;
+            const commune = document.getElementById('commune').value.trim();
+            const deliveryType = document.querySelector('input[name="deliveryType"]:checked');
+
+            if (!fullName || !phone || !engraving || !wilaya || !commune || !deliveryType) {
+                alert('يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+
+            const phoneRegex = /^0[5-7]\d{8}$/;
+            if (!phoneRegex.test(phone)) {
+                alert('يرجى إدخال رقم هاتف جزائري صحيح (05/06/07)');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري إرسال طلبك...';
+
+            updateTimers();
+            const totalTime = Math.round((Date.now() - startTime) / 1000);
+            let mostViewedId = Object.keys(sectionTimes).reduce((a, b) => sectionTimes[a] > sectionTimes[b] ? a : b);
+            let mostViewedName = document.getElementById(mostViewedId)?.getAttribute('data-section-name') || "None";
+            const isMatch = (selectedProduct.name === mostViewedName) ? "YES" : "NO";
+
+            const deliveryPrice = (selectedDelivery === 'home') ? selectedWilaya.home : selectedWilaya.stopdesk;
+            const totalPrice = selectedProduct.price + deliveryPrice;
+            const orderNumber = "ADAM-" + Date.now().toString().slice(-6);
+
+            const formData = {
+                orderNumber: orderNumber,
+                fullName: fullName,
+                phone: phone,
+                product: selectedProduct.name,
+                wilaya: selectedWilaya.name,
+                commune: commune,
+                deliveryMethod: selectedDelivery === 'home' ? 'توصيل للمنزل' : 'توصيل للمكتب',
+                engraving: engraving,
+                mahrDate: mahrDateValue,
+                boxPrice: selectedProduct.price,
+                shippingPrice: deliveryPrice,
+                totalPrice: totalPrice,
+                // Analytics Fields
+                mostViewedBox: mostViewedName,
+                isMatch: isMatch,
+                timeSpentOnSite: totalTime + "s",
+                visitorId: visitorId
+            };
+
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                orderPlaced = true;
+                // Track Lead with Meta Pixel on Success
+                if (window.fbq) {
+                    fbq('track', 'Lead');
+                }
+
+                document.getElementById('successModal').classList.remove('hidden');
+                document.getElementById('orderForm').reset();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى أو التواصل معنا عبر واتساب.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيـــــد الطلـــــب الآن';
+            }
+        }
+
+        // Scroll Reveal logic
+        const scrollRevealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => scrollRevealObserver.observe(el));
+    </script>
+</body>
+</html>
